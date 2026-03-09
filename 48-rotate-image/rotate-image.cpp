@@ -4,12 +4,20 @@ public:
         int n = matrix.size();
 
         vector<vector<int>> matrix1(n, vector<int>(n));
+        int start = 0;
+        int end = n*n -1;
+        while(start <= end){
+            int i = start/n;
+            int j = start%n;
+            matrix1[j][n-i-1] = matrix[i][j];
+            i = end/n;
+            j = end%n;
+            matrix1[j][n-i-1] = matrix[i][j];
+            start++ ;
+            end--;
 
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < n; j++){
-                matrix1[j][n - i - 1] = matrix[i][j];
-            }
         }
+
 
         matrix = matrix1;
     }
