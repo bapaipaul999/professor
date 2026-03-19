@@ -11,26 +11,16 @@
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        set<int>check;
         ListNode* ptr = head;
-        while(ptr != NULL){
-            check.insert(ptr->val);
-            ptr = ptr->next;
-        }
-        head = NULL;
-        ptr = head;
-        for(auto i : check){
-            ListNode* newnode = new ListNode(i);
-            if(head == NULL){
-                head = newnode;
-                ptr = newnode;
-            }
-            else{
-                ptr -> next = newnode;
-                ptr = newnode;
-            }
-        }
-        return head;
 
+        while (ptr != NULL && ptr->next != NULL) {
+            if (ptr->val == ptr->next->val) {
+                ptr->next = ptr->next->next; 
+            } else {
+                ptr = ptr->next;
+            }
+        }
+
+        return head;
     }
 };
