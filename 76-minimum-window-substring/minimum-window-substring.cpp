@@ -3,7 +3,7 @@ public:
     string minWindow(string s, string t) {
         if (t.size() > s.size()) return "";
 
-        vector<int> need(128, 0);
+        map<int,int>need;
         for (char ch : t) need[ch]++;
 
         int required = t.size();   // total chars still needed
