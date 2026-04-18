@@ -18,11 +18,12 @@ public:
         while(lsum>0 && count<k){
             lsum = lsum - nums[l];
             rsum = rsum + nums[r];
+            int x = lsum+rsum;
+            total = max(x,total);
             r--;
             l--;
             count++;
-            int x = lsum+rsum;
-            total = max(x,total);
+            
         }
         return total;
     }
