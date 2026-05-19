@@ -19,16 +19,19 @@ public:
         stack<TreeNode*>s1;
         s1.push(root);
         while(!s1.empty()){
-            root = s1.top();
+            TreeNode* node = s1.top();
             s1.pop();
-            ans.push_back(root -> val);
-            if(root -> right != NULL){
-                s1.push(root->right);
+            ans.push_back(node->val);
+            if(node -> right != NULL){
+                s1.push(node -> right);
             }
-            if(root -> left != NULL){
-                s1.push(root -> left);
+            if(node -> left != NULL){
+                s1.push(node -> left);
             }
+
         }
         return ans;
+
+
     }
 };
