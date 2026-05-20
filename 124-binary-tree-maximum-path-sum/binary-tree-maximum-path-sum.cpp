@@ -20,10 +20,10 @@ public:
         if(root == NULL){
             return 0;
         }
-        int lh = max(0,maxsum(root -> left,maxi));
-        int rh = max(0,maxsum(root -> right,maxi));
-        int x = lh+rh+root->val;
-        maxi = max(maxi,x);
-        return root->val +max(lh,rh);
+        int left_sum = max(0,maxsum(root -> left , maxi));
+        int right_sum = max(0,maxsum(root -> right , maxi));
+        maxi = max(maxi , root -> val + left_sum + right_sum);
+        return root->val+max(left_sum , right_sum);
+
     }
 };
