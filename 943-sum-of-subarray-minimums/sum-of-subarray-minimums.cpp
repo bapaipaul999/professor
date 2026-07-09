@@ -1,54 +1,47 @@
 class Solution {
 public:
-    int sumSubarrayMins(vector<int>& nums) {
-        int n = nums.size();
+    int sumSubarrayMins(vector<int>& arr) {
+
+        int n = arr.size();
+
         vector<int> next_small(n);
         vector<int> prev_small(n);
-        stack<int> s1;
 
-      
+        stack<int> st;
+
+        // Next Smaller (strict)
         for (int i = n - 1; i >= 0; i--) {
-            while (!s1.empty() && nums[s1.top()] > nums[i]) {
-                s1.pop();
-            }
+            while (!st.empty() && arr[st.top()] > arr[i])
+                st.pop();
 
-            if (s1.empty()) {
-                next_small[i] = n;
-            } else {
-                next_small[i] = s1.top();
-            }
+            next_small[i] = st.empty() ? n : st.top();
 
-            s1.push(i);
+            st.push(i);
         }
 
-        while (!s1.empty()) s1.pop();
+        while (!st.empty()) st.pop();
 
-       
+        // Previous Smaller or Equal
         for (int i = 0; i < n; i++) {
-            while (!s1.empty() && nums[s1.top()] >= nums[i]) {
-                s1.pop();
-            }
+            while (!st.empty() && arr[st.top()] >= arr[i])
+                st.pop();
 
-            if (s1.empty()) {
-                prev_small[i] = -1;
-            } else {
-                prev_small[i] = s1.top();
-            }
+            prev_small[i] = st.empty() ? -1 : st.top();
 
-            s1.push(i);
+            st.push(i);
         }
 
         long long mod = 1e9 + 7;
-        long long sum = 0;
+        long long total = 0;
 
         for (int i = 0; i < n; i++) {
+
             long long left = i - prev_small[i];
             long long right = next_small[i] - i;
-            long long freq = left * right;
 
-            sum = (sum + (freq * nums[i]) % mod) % mod;
+            total = (total + left * right % mod * arr[i]) % mod;
         }
 
-        return sum;
+        return total;
     }
 };
