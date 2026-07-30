@@ -16,7 +16,7 @@ public:
        vector<int>ans;
        if(root == NULL){
         return ans;
-       }
+       } 
        stack<TreeNode*>s1;
        TreeNode* current = root;
        TreeNode* lastElement = NULL;
