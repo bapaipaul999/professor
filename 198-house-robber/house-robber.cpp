@@ -1,24 +1,18 @@
 class Solution {
 public:
-    int find(int n , vector<int> nums , vector<int>&dp){
-        if(n == 0){
-            return nums[n];
-        }
-        if(n<0){
-            return 0;
-        }
-        if(dp[n]!=-1){
-            return dp[n];
-        }
-        int pick = nums[n] + find(n-2 , nums , dp);
-        int notpick = find(n-1 , nums , dp);
-        return dp[n] = max(pick , notpick);
-    }
-
     int rob(vector<int>& nums) {
-        int n = nums.size();
-        vector<int>dp(n , -1);
-        int ans = find(n-1 , nums , dp);
-        return ans;
+        vector<int>dp(nums.size() , -1);
+        dp[0] = nums[0];
+        for(int i = 1 ; i<nums.size() ; i++){
+            int take = nums[i] ;
+            if(i>1){
+                take +=dp[i-2];
+            }
+            int notTake = dp[i-1];
+            dp[i] = max(take , notTake);
+
+
+        }
+        return dp[nums.size()-1];
     }
 };
