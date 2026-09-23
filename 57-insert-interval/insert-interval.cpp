@@ -1,15 +1,13 @@
 class Solution {
 public:
-    static bool comparasion(vector<int> first, vector<int> second) {
-        return first[0] < second[0];
-    }
+   
 
     vector<vector<int>> insert(vector<vector<int>>& intervals,
                                vector<int>& newInterval) {
 
         intervals.push_back(newInterval);
 
-        sort(intervals.begin(), intervals.end(), comparasion);
+        sort(intervals.begin(), intervals.end());
 
         vector<vector<int>> ans;
 
